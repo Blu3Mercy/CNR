@@ -956,7 +956,7 @@ new zones[][zoneinfo] = {
 { "Flint County",                -1213.90, -2892.90,  -242.90,    44.60,  -768.00,   900.00},
 { "Whetstone",                   -2997.40, -2892.90,  -242.90, -1213.90, -1115.50,   900.00}};
 
-main() print("\nRuNix's Cops and Robbers\n\n");
+main() print("xorg62 & Cheaterman's CnR");
 
 #pragma unused ret_memcpy
 
@@ -996,15 +996,15 @@ public OnGameModeExit()
 	}
 	for (new p = 0; p < 2; p++) KillTimer(TimerKill[p]);
 }
+
 public OnGameModeInit()
 {
-	SendRconCommand("hostname RuNix's Cops And Robbers[v1.2]");
-	SendRconCommand("mapname San Andreas");
-	SendRconCommand("weburl wWw.rSs-rO.cOm");
-	SetGameModeText("Cops and Robbers [v1.2]");
+	SendRconCommand("mapname by xorg62 and Cheaterman");
+	SetGameModeText("Extended Cops and Robbers");
 
 	DisableInteriorEnterExits();
 	ShowPlayerMarkers(2);
+	ManualVehicleEngineAndLights();
 
 	//BUS
 	for (new i=0;i<MAX_PLAYERS;i++)
@@ -2747,7 +2747,7 @@ public OnPlayerText(playerid, text[])
 			}
 			else SendClientMessage(playerid, ERROR, "Your team cannot rob anything.");
   		}
-  		if(CPS_IsPlayerInCheckpoint(playerid, cpammu2))
+	if(CPS_IsPlayerInCheckpoint(playerid, cpammu2))
 	    {
             AMMUBOX[playerid] = 0;
 	        if(gTeam[playerid] != COP && gTeam[playerid] != Medic && gTeam[playerid] != SWAT && gTeam[playerid] != FBI && gTeam[playerid] != ARMY)
@@ -2780,7 +2780,7 @@ public OnPlayerText(playerid, text[])
 			}
 			else SendClientMessage(playerid, ERROR, "Your team cannot rob anything.");
   		}
-			if(CPS_IsPlayerInCheckpoint(playerid, cpammu3))
+	if(CPS_IsPlayerInCheckpoint(playerid, cpammu3))
 	        {
             AMMUBOX[playerid] = 0;
 	        if(gTeam[playerid] != COP && gTeam[playerid] != Medic && gTeam[playerid] != SWAT && gTeam[playerid] != FBI && gTeam[playerid] != ARMY)
@@ -2813,7 +2813,7 @@ public OnPlayerText(playerid, text[])
 			}
 			else SendClientMessage(playerid, ERROR, "Your team cannot rob anything.");
   		}
-			if(CPS_IsPlayerInCheckpoint(playerid, cpammu4))
+	if(CPS_IsPlayerInCheckpoint(playerid, cpammu4))
 	        {
             AMMUBOX[playerid] = 0;
 	        if(gTeam[playerid] != COP && gTeam[playerid] != Medic && gTeam[playerid] != SWAT && gTeam[playerid] != FBI && gTeam[playerid] != ARMY)
@@ -2846,8 +2846,8 @@ public OnPlayerText(playerid, text[])
 			}
 			else SendClientMessage(playerid, ERROR, "Your team cannot rob anything.");
   		}
-			if(CPS_IsPlayerInCheckpoint(playerid, cpammu5))
-	        {
+	if(CPS_IsPlayerInCheckpoint(playerid, cpammu5))
+ 	{
             AMMUBOX[playerid] = 0;
 	        if(gTeam[playerid] != COP && gTeam[playerid] != Medic && gTeam[playerid] != SWAT && gTeam[playerid] != FBI && gTeam[playerid] != ARMY)
 			{
@@ -2878,7 +2878,7 @@ public OnPlayerText(playerid, text[])
 					else if(Ammu5RecentlyRobbed > 0) return SendClientMessage(playerid, ERROR, "Ammunation has been robbed recently!");
 			}
 			else SendClientMessage(playerid, ERROR, "Your team cannot rob anything.");
-  		}
+	}
 	return false;
 	}
 	if(text[0] == '1' && AMMUBOX[playerid] == 2)
@@ -3209,7 +3209,7 @@ public OnPlayerText(playerid, text[])
 						SendClientMessage(playerid, ERROR, "The City Hall has been robbed recently!");
 						TogglePlayerControllable(playerid, true);
 					}
-				} else SendClientMessage(playerid, ERROR, "Your team cannot rob anything."); TogglePlayerControllable(playerid, true);
+		} else SendClientMessage(playerid, ERROR, "Your team cannot rob anything."); TogglePlayerControllable(playerid, true);
 	    return false;
 	}
     if(text[0] == '1' && CHALLBOX[playerid] == 1)
@@ -7412,63 +7412,71 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 {
     if(newkeys == KEY_SUBMISSION)
 	{
-	//Trash
-	if (gTeam[playerid] == CIVILIAN && IsPlayerInAnyVehicle(playerid) && GetVehicleModel(GetPlayerVehicleID(playerid)) == 408)
-    {
-    if(InTrashMission[playerid] == 0)
-    {
-    HideDraw(playerid);
-	TextDrawShowForPlayer(playerid,BUSBOX);
-	TextDrawShowForPlayer(playerid,text40);
-	SelectTM[playerid] = 1;
-	}else
-	if(InTrashMission[playerid] == 1)
-	{
-	DisablePlayerRaceCheckpoint(playerid);
-	SelectTM[playerid] = 0;
-	InTrashMission[playerid] = 0;
-	}
-    }
+		//Trash
+		if (gTeam[playerid] == CIVILIAN && IsPlayerInAnyVehicle(playerid) && GetVehicleModel(GetPlayerVehicleID(playerid)) == 408)
+	    {
+		    if(InTrashMission[playerid] == 0)
+		    {
+			    HideDraw(playerid);
+				TextDrawShowForPlayer(playerid,BUSBOX);
+				TextDrawShowForPlayer(playerid,text40);
+				SelectTM[playerid] = 1;
+			}
+			else if(InTrashMission[playerid] == 1)
+			{
+				DisablePlayerRaceCheckpoint(playerid);
+				SelectTM[playerid] = 0;
+				InTrashMission[playerid] = 0;
+			}
+	    }
     //
-	if (gTeam[playerid] == CIVILIAN && IsPlayerInAnyVehicle(playerid) && GetVehicleModel(GetPlayerVehicleID(playerid)) == 420 || gTeam[playerid] == CIVILIAN && IsPlayerInAnyVehicle(playerid) && GetVehicleModel(GetPlayerVehicleID(playerid)) ==438)
-    {
-    if (playerInJob[playerid]<0)
-    {
-	MissionIni(playerid);
-	SendClientMessage(playerid,yellow,"You are now Taxi Driver! Find people to enter in you taxi and earn money!");
+		if (gTeam[playerid] == CIVILIAN && IsPlayerInAnyVehicle(playerid) && GetVehicleModel(GetPlayerVehicleID(playerid)) == 420 || gTeam[playerid] == CIVILIAN && IsPlayerInAnyVehicle(playerid) && GetVehicleModel(GetPlayerVehicleID(playerid)) ==438)
+	    {
+	    	if (playerInJob[playerid]<0)
+		    {
+				MissionIni(playerid);
+				SendClientMessage(playerid,yellow,"You are now Taxi Driver! Find people to enter in you taxi and earn money!");
+		    }
+		    else
+		    {
+			    terminarMission(playerid);
+		    }
+	    }
+	    if (gTeam[playerid] == CIVILIAN && IsPlayerInAnyVehicle(playerid) && GetVehicleModel(GetPlayerVehicleID(playerid)) == 431 || gTeam[playerid] == CIVILIAN && IsPlayerInAnyVehicle(playerid) && GetVehicleModel(GetPlayerVehicleID(playerid)) ==437)
+	    {
+		    if (playerInMiniMission2[playerid]<0)
+		    {
+			    HideDraw(playerid);
+				TextDrawShowForPlayer(playerid,BUSBOX);
+				TextDrawShowForPlayer(playerid,text24);
+				SelectBM[playerid] = 1;
+		    }
+	    	else
+		    {
+			    if(SelectBM[playerid] == 1)
+			    {
+				    HideDraw(playerid);
+				    SelectBM[playerid] = 0;
+			    }
+			    if(SelectBM[playerid] == 0)
+			    {
+				    terminarMission2(playerid);
+			    }
+		    }
+	    }
+	    if(IsPlayerInAnyVehicle(playerid))
+	    {
+			new engine, lights, alarm, doors, bonnet, boot, objective;
+		    GetVehicleParamsEx(GetPlayerVehicleID(playerid), engine, lights, alarm, doors, bonnet, boot, objective);
+	    	SetVehicleParamsEx(GetPlayerVehicleID(playerid), true, lights, alarm, doors, bonnet, boot, objective);
+		}
     }
-    else
-    {
-    terminarMission(playerid);
-    }
-    }
-    if (gTeam[playerid] == CIVILIAN && IsPlayerInAnyVehicle(playerid) && GetVehicleModel(GetPlayerVehicleID(playerid)) == 431 || gTeam[playerid] == CIVILIAN && IsPlayerInAnyVehicle(playerid) && GetVehicleModel(GetPlayerVehicleID(playerid)) ==437)
-    {
-    if (playerInMiniMission2[playerid]<0)
-    {
-    HideDraw(playerid);
-	TextDrawShowForPlayer(playerid,BUSBOX);
-	TextDrawShowForPlayer(playerid,text24);
-	SelectBM[playerid] = 1;
-    }
-    else
-    {
-    if(SelectBM[playerid] == 1)
-    {
-    HideDraw(playerid);
-    SelectBM[playerid] = 0;
-    }
-    if(SelectBM[playerid] == 0)
-    {
-    terminarMission2(playerid);
-    }
-    }
-    }
-    }
+
 	if(newkeys == KEY_FIRE)
 	{
-    HideDraw(playerid);
+    	HideDraw(playerid);
     }
+
 	return 1;
 }
 public OnVehicleDeath(vehicleid, killerid)
